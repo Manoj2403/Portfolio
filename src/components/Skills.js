@@ -82,7 +82,7 @@ const Skills = () => {
 
   return (
     <div>
-      <div className="block lg:hidden w-full h-[1px] bg-gradient-to-r from-transparent via-customGreen to-transparent animate-pulse"/>
+      <div className="block lg:hidden w-full h-[1px] bg-gradient-to-r from-transparent via-customGreen to-transparent animate-pulse" />
       <h1 className="text-4xl font-bold text-customGreen mb-20 text-center animate-fade-in font-cursive"> Tech Stack - The Level-Up Tools 😉 </h1>
 
       <div className="flex flex-col lg:flex-row items-start mx-10 ">
@@ -147,7 +147,7 @@ const Skills = () => {
         </div>
 
         {/*Pulse */}
-        <div className="my-auto w-20 h-20 sm:w-0 sm:h-0 lg:w-1 lg:h-72 bg-customGreen relative mx-10">
+        <div className="hidden lg:block w-1 h-72 bg-customGreen my-auto relative">
           <div className="absolute inset-0 blur-sm bg-customGreen animate-pulse" />
         </div>
       </div>

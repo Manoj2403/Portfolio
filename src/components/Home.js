@@ -86,7 +86,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="w-20 h-20 sm:w-0 sm:h-0 lg:w-1 lg:h-72 bg-customGreen relative">
+            <div className="hidden lg:block w-1 h-72 bg-customGreen my-auto relative">
                 <div className="absolute inset-0 blur-sm bg-customGreen animate-pulse" />
             </div>
         </div>
