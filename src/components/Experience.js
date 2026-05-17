@@ -64,7 +64,7 @@ const Experience = () => {
   <div className="max-w-3xl mx-auto px-6">
 
     <h1 className="text-4xl font-bold text-customPink mb-20 text-center animate-fade-in font-cursive">
-      Places That Trusted Me 😄{/* Journey So Far 🚀*/}
+      Places That Trusted Me 🤗{/* Journey So Far 🚀*/}
     </h1>
 
     <div className='flex items-start'>
