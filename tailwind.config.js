@@ -18,7 +18,7 @@ module.exports = {
         'fade-left': 'fadeleft 1s linear',
         'scroll-left': 'scrollLeft 15s linear infinite',
         'scroll-right': 'scrollRight 15s linear infinite',
-        'fade-top': 'fadeTop 1.3s linear'
+        'fade-top': 'fadeTop 1.5s ease-in'
       },
       extend: {
         rotate: {

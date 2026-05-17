@@ -22,7 +22,7 @@ const Home = () => {
         <div className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-10 py-10 md:py-16 text-white gap-10">
 
 
-            <div className="w-full md:w-1/2 md:ml-20 animate-fade-in transition-all duration-500 ease-in-out text-center md:text-left">
+            <div className="w-full md:w-1/2 md:ml-20 animate-fade-right transition-all duration-500 ease-in-out text-center md:text-left">
                 <p className="text-lg sm:text-2xl md:text-3xl font-cursive">Hello 👋, I am</p>
 
                 <h1 className="text-xl sm:text-5xl md:text-6xl font-bold tracking-wide mt-4 font-cursive text-customPink">
@@ -70,7 +70,7 @@ const Home = () => {
                             duration-500
                             ease-in-out"
                 />
-                <div className='flex justify-center md:justify-start gap-4 sm:gap-6 text-2xl sm:text-3xl mt-8'>
+                <div className='flex justify-center animate-fade-in md:justify-start gap-4 sm:gap-6 text-2xl sm:text-3xl mt-8'>
                     <a href={GITHUB_LINK} target="_blank" rel="noopener noreferrer" className='hover:text-customGreen'>
                         <FaGithub />
                     </a>

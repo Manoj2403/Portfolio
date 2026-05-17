@@ -82,7 +82,7 @@ const Skills = () => {
 
   return (
     <div>
-
+      <div className="block lg:hidden w-full h-[1px] bg-gradient-to-r from-transparent via-customGreen to-transparent animate-pulse"/>
       <h1 className="text-4xl font-bold text-customGreen mb-20 text-center animate-fade-in font-cursive"> Tech Stack - The Level-Up Tools 😉 </h1>
 
       <div className="flex flex-col lg:flex-row items-start mx-10 ">
@@ -141,7 +141,7 @@ const Skills = () => {
             />
           </div>
 
-          <div className=''>
+          <div className='animate-fade-left'>
             <ProblemSolvingCards />
           </div>
         </div>
@@ -154,7 +154,7 @@ const Skills = () => {
 
       <div className="mt-10 mx-20 relative bg-gradient-to-r from-customGreen/20 via-black/30 to-customGreen/20 
                       backdrop-blur-md border border-customGreen shadow-xl rounded-2xl p-8
-                      hover:scale-[1.02] transition-transform duration-300 ease-in-out animate-fade-up" >
+                      hover:scale-[1.02] transition-transform duration-300 ease-in-out animate-fade-in" >
         <h3 className="text-3xl font-bold mb-5 text-center text-customPink tracking-wide font-cursive">
           🚀 Areas Of Interest
         </h3>
