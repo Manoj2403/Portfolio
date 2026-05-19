@@ -19,7 +19,7 @@ const Home = () => {
     // }, []);
 
     return (
-        <div className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-10 py-10 md:py-16 text-white gap-10">
+        <div className="min-h-screen flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-10 py-10 md:py-16 text-white gap-10">
 
 
             <div className="w-full md:w-1/2 md:ml-20 animate-fade-right transition-all duration-500 ease-in-out text-center md:text-left">

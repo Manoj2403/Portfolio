@@ -17,7 +17,7 @@ function App() {
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
-  const certificationsRef = useRef(null);
+  // const certificationsRef = useRef(null);
   const educationRef = useRef(null);
   const contactRef = useRef(null);
   const year = new Date().getFullYear();
@@ -55,6 +55,13 @@ function App() {
       specialMonth: 8,
       desc: `Happy Independence Day ${year}!`,
       shortMsg: `"Honoring freedom, courage, and the spirit of India"`,
+      image: null
+    },
+    {
+      specialDate: 14,
+      specialMonth: 9,
+      desc: `Happy Vinayagar Chaturthi ${year}!`,
+      shortMsg: `" Celebrates the birth of Lord Ganesha, the remover of obstacles and symbol of wisdom."`,
       image: null
     },
     {
@@ -107,10 +114,10 @@ function App() {
         aboutRef={aboutRef}
         skillsRef={skillsRef}
         projectsRef={projectsRef}
-        certificationsRef={certificationsRef}
+        // certificationsRef={certificationsRef}
         educationRef={educationRef}
         contactRef={contactRef} />
-      <div ref={homeRef}><Home /></div>
+      <div ref={homeRef} ><Home /></div>
       <div ref={aboutRef} className="scroll-mt-10 py-20"><About /></div>
       <div ref={experienceRef} className="scroll-mt-10 py-20"><Experience /></div>
       <div ref={skillsRef} className="scroll-mt-10 py-20"><Skills /></div>

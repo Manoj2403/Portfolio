@@ -7,7 +7,7 @@ const Navbar = ({
   aboutRef,
   skillsRef,
   projectsRef,
-  certificationsRef,
+  // certificationsRef,
   educationRef,
   contactRef,
 }) => {
@@ -40,16 +40,23 @@ const Navbar = ({
       ref: contactRef
     }
   ];
+  const navRef = useState(null)
 
   const scrollToSection = (ref, index = null) => {
-    setActiveIndex(index);
+    if (index != undefined)
+      setActiveIndex(index)
     setMenuOpen(false);
 
     requestAnimationFrame(() => {
-      ref?.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      if (ref == homeRef) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      if (ref?.current) {
+        const navbarHeight = navRef.current?.offsetHeight ?? 68;
+        const top = ref.current.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
     });
   };
 
