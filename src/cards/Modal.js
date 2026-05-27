@@ -5,8 +5,31 @@ function Modal({ onClose }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [errMsg, setErrMsg] = useState("");
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    const validateEmail = (email)=>{ //Validating the email
+        return emailRegex.test(email);
+    }
 
     const handleSend = () => {
+        if (name.trim() === "" && email.trim() === "") {
+            setErrMsg("Name and Email are Required.")
+            return;
+        }
+        else if (name.trim() === "") {
+            setErrMsg("Name is Required.")
+            return;
+        }
+        else if (email.trim() === "") {
+            setErrMsg("Email is Required.")
+            return;
+        }
+        else if(!validateEmail(email)){
+            setErrMsg("Enter Valid Email Id.")
+            return ;
+        }
+
         const to = "manojvelusamy24@gmail.com";
         const subject = encodeURIComponent("Contact from Portfolio");
 
@@ -89,6 +112,7 @@ function Modal({ onClose }) {
                         >
                             Send Message to Manoj
                         </button>
+                        <h1 className={errMsg ? "block text-red-500" : "hidden"}>{errMsg}</h1>
                     </div>
                 </div>
             </div>
