@@ -21,6 +21,9 @@ function App() {
   const educationRef = useRef(null);
   const contactRef = useRef(null);
   const year = new Date().getFullYear();
+  const [visibleSection, setVisibleSection] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
+
   const specialDays = [
     {
       specialDate: 1,
@@ -84,6 +87,23 @@ function App() {
   const [specialDay, setSpecialDay] = useState(null);
 
   useEffect(() => {
+    //Handling the Scroll
+    const handleScroll = () => {
+      const reachedBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+      if (reachedBottom && !isLoading) {
+        setIsLoading(true);
+        setVisibleSection((prev) => {
+          if (prev < 8) {
+            return prev + 1;
+          }
+          return prev;
+        });
+
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+      }
+    }
     const today = new Date();
     const todayDate = today.getDate();
     const currentMonth = today.getMonth() + 1;
@@ -100,6 +120,12 @@ function App() {
     }
     else {    // Today is not a Special Day
       setIsTodaySpecial(false);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     }
   }, [])
 
@@ -118,13 +144,13 @@ function App() {
         educationRef={educationRef}
         contactRef={contactRef} />
       <div ref={homeRef} ><Home /></div>
-      <div ref={aboutRef} className="scroll-mt-10 py-20"><About /></div>
-      <div ref={experienceRef} className="scroll-mt-10 py-20"><Experience /></div>
-      <div ref={skillsRef} className="scroll-mt-10 py-20"><Skills /></div>
-      <div ref={educationRef} className="scroll-mt-10 py-20"><Education /></div>
-      <div ref={projectsRef} className="scroll-mt-10 py-20"><Projects /></div>
-      <div ref={contactRef} className="scroll-mt-10 py-20"><Contact /></div>
-      <Footer aboutRef={aboutRef} />
+      {visibleSection >= 2 && <div ref={aboutRef} className="scroll-mt-10 py-20"><About /></div>}
+      {visibleSection >= 3 && <div ref={experienceRef} className="scroll-mt-10 py-20"><Experience /></div>}
+      {visibleSection >= 4 && <div ref={skillsRef} className="scroll-mt-10 py-20"><Skills /></div>}
+      {visibleSection >= 5 && <div ref={educationRef} className="scroll-mt-10 py-20"><Education /></div>}
+      {visibleSection >= 6 && <div ref={projectsRef} className="scroll-mt-10 py-20"><Projects /></div>}
+      {visibleSection >= 7 && <div ref={contactRef} className="scroll-mt-10 py-20"><Contact /></div>}
+      {visibleSection >= 8 && <Footer aboutRef={aboutRef} />}
       <ScrollButton />
     </div>
   );
