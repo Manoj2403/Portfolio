@@ -12,6 +12,7 @@ const Experience = () => {
       startMonth: "March",
       endYear: null,
       endMonth: null,
+      location: "Chennai, India",
       isCurrentlyWorking: true,
       image: cognizantLogoSymbol,
       description: "Working as a Software Engineer, contributing to enterprise-level applications and collaborating with cross-functional teams to deliver high-quality solutions.",
@@ -23,6 +24,7 @@ const Experience = () => {
       startMonth: "December",
       endYear: 2023,
       endMonth: "December",
+      location: "Remote",
       isCurrentlyWorking: false,
       image: gfgLogo,
       description: "Represented GeeksforGeeks on campus, organized coding events, workshops, and helped students enhance their DSA and programming skills.",
@@ -90,11 +92,12 @@ const Experience = () => {
                   <p className="font-bold text-gray-100 text-base">{exp.company}</p>
                 </div>
                 <p className="text-sm text-gray-400">
-                  {exp.startMonth} {exp.startYear} –{" "}
+                  {exp.startMonth} {exp.startYear} -{" "}
                   {exp.isCurrentlyWorking
                     ? "Present"
                     : `${exp.endMonth} ${exp.endYear}`}
                 </p>
+                <p className='text-sm text-gray-400 '>{exp.location}</p>
               </div>
 
               {/* Center Dotted line */}
