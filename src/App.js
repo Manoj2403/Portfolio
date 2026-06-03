@@ -21,6 +21,8 @@ function App() {
   const educationRef = useRef(null);
   const contactRef = useRef(null);
   const year = new Date().getFullYear();
+  const [visibleSection, setVisibleSection] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
 
   const specialDays = [
     {
@@ -83,41 +85,8 @@ function App() {
 
   const [isTodaySpecial, setIsTodaySpecial] = useState(false);
   const [specialDay, setSpecialDay] = useState(null);
-  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-
-    //Intersection Observer API
-    const sections = [
-      homeRef,
-      aboutRef,
-      experienceRef,
-      skillsRef,
-      educationRef,
-      projectsRef,
-      contactRef
-    ]
-    const callBack = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const options = {
-      root: null,
-      threshold: 0.5
-    }
-
-    const observer = new IntersectionObserver(callBack, options);
-
-    sections.forEach((section) => {
-      if (section.current)
-        observer.observe(section.current)
-    });
-
-
     const today = new Date();
     const todayDate = today.getDate();
     const currentMonth = today.getMonth() + 1;
@@ -136,9 +105,6 @@ function App() {
       setIsTodaySpecial(false);
     }
 
-    return () => {
-      observer.disconnect();
-    }
   }, [])
 
 
@@ -147,7 +113,6 @@ function App() {
     <div className='bg-gradient-to-r from-[#0f172a] to-[#1e1b4b] '>
       {isTodaySpecial && <SpecialDaysCard onClose={() => setIsTodaySpecial(false)} dayDetails={specialDay} />}
       <Navbar
-        activeSection={activeSection}
         homeRef={homeRef}
         experienceRef={experienceRef}
         aboutRef={aboutRef}
@@ -156,13 +121,13 @@ function App() {
         // certificationsRef={certificationsRef}
         educationRef={educationRef}
         contactRef={contactRef} />
-      <div id="home" ref={homeRef} ><Home /></div>
-      <div id="about" ref={aboutRef} className="scroll-mt-10 py-20"><About /></div>
-      <div id="experience" ref={experienceRef} className="scroll-mt-10 py-20"><Experience /></div>
-      <div id="skills" ref={skillsRef} className="scroll-mt-10 py-20"><Skills /></div>
-      <div id="education" ref={educationRef} className="scroll-mt-10 py-20"><Education /></div>
-      <div id="projects" ref={projectsRef} className="scroll-mt-10 py-20"><Projects /></div>
-      <div id="contact" ref={contactRef} className="scroll-mt-10 py-20"><Contact /></div>
+      <div ref={homeRef} ><Home /></div>
+      <div ref={aboutRef} className="scroll-mt-10 py-20"><About /></div>
+      <div ref={experienceRef} className="scroll-mt-10 py-20"><Experience /></div>
+      <div ref={skillsRef} className="scroll-mt-10 py-20"><Skills /></div>
+      <div ref={educationRef} className="scroll-mt-10 py-20"><Education /></div>
+      <div ref={projectsRef} className="scroll-mt-10 py-20"><Projects /></div>
+      <div ref={contactRef} className="scroll-mt-10 py-20"><Contact /></div>
       <Footer aboutRef={aboutRef} />
       <ScrollButton />
     </div>
