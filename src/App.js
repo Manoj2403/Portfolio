@@ -85,8 +85,47 @@ function App() {
 
   const [isTodaySpecial, setIsTodaySpecial] = useState(false);
   const [specialDay, setSpecialDay] = useState(null);
+  const [activeSection, setActiveSection] = useState("HOME")
+  const isNavClick = useRef(false);
 
   useEffect(() => {
+
+    const sections = [
+      { name: "HOME", ref: homeRef },
+      { name: "ABOUT", ref: aboutRef },
+      { name: "EXPERIENCE", ref: experienceRef },
+      { name: "SKILLS", ref: skillsRef },
+      { name: "EDUCATION", ref: educationRef },
+      { name: "PROJECTS", ref: projectsRef },
+      { name: "CONTACT", ref: contactRef }
+    ]
+
+    //InterSectionObserver API
+    const callBack = (entries) => {
+      if (isNavClick.current)
+        return;
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const currentSection = sections.find(section => section.ref.current === entry.target);
+        if (currentSection) {
+          setActiveSection(currentSection.name === "HOME" ? null : currentSection.name);
+        }
+      })
+
+
+    }
+    const options = {
+      root: null,
+      threshold: 0.5
+    }
+
+    const observer = new IntersectionObserver(callBack, options);
+    sections.forEach((section) => {
+      if (section.ref.current) {
+        observer.observe(section.ref.current);
+      }
+    })
+
     const today = new Date();
     const todayDate = today.getDate();
     const currentMonth = today.getMonth() + 1;
@@ -104,7 +143,7 @@ function App() {
     else {    // Today is not a Special Day
       setIsTodaySpecial(false);
     }
-
+    return () => observer.disconnect();
   }, [])
 
 
@@ -113,6 +152,9 @@ function App() {
     <div className='bg-gradient-to-r from-[#0f172a] to-[#1e1b4b] '>
       {isTodaySpecial && <SpecialDaysCard onClose={() => setIsTodaySpecial(false)} dayDetails={specialDay} />}
       <Navbar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        isNavClick={isNavClick}
         homeRef={homeRef}
         experienceRef={experienceRef}
         aboutRef={aboutRef}

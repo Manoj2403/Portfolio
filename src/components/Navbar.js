@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = ({
+  activeSection,
+  setActiveSection,
+  isNavClick,
   homeRef,
   experienceRef,
   aboutRef,
@@ -11,7 +14,6 @@ const Navbar = ({
   contactRef,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
 
   const navOptions = [
     {
@@ -39,11 +41,12 @@ const Navbar = ({
       ref: contactRef
     }
   ];
-  const navRef = useState(null)
+  const navRef = useRef(null)
 
-  const scrollToSection = (ref, index = null) => {
-    if (index != undefined)
-      setActiveIndex(index)
+  const scrollToSection = (ref, index, optionName) => {
+    setActiveSection(optionName);
+    isNavClick.current = true;
+
     setMenuOpen(false);
 
     requestAnimationFrame(() => {
@@ -57,10 +60,13 @@ const Navbar = ({
         window.scrollTo({ top, behavior: "smooth" });
       }
     });
+    setTimeout(() => {
+      isNavClick.current = false;
+    }, 1000);
   };
 
   return (
-    <nav className="backdrop-blur-3xl shadow-md sticky top-0 z-50 font-inter text-medium bg-black/20">
+    <nav ref={navRef} className="backdrop-blur-3xl shadow-md sticky top-0 z-50 font-inter text-medium bg-black/20">
       <div className="w-full mx-auto px-4">
 
         <div className="flex items-center justify-between py-4 w-full">
@@ -70,7 +76,7 @@ const Navbar = ({
             className="text-4xl mx-24 font-bold text-customGreen font-serif tracking-widest cursor-pointer animate-fade-right"
             onClick={() => scrollToSection(homeRef)}
           >
-            M
+            MK
           </h1>
 
           {/* Desktop */}
@@ -85,12 +91,12 @@ const Navbar = ({
                   cursor-pointer transition-all duration-300
                   hover:text-black hover:bg-white/80
                   font-cursive
-                  ${activeIndex === idx
+                  ${(activeSection === options.name)
                       ? "bg-customTeal text-black rounded-ss-2xl rounded-se-sm rounded-es-sm rounded-ee-2xl"
                       : "text-white"
                     }`
                   }
-                  onClick={() => scrollToSection(options.ref, idx)}>{options.name}</li>
+                  onClick={() => scrollToSection(options.ref, idx, options.name)}>{options.name}</li>
               ))}
             </ul>
           </div>
@@ -122,7 +128,7 @@ const Navbar = ({
                     cursor-pointer transition-all duration-300
                     hover:bg-white/10 hover:text-customOrange
                     text-sm tracking-wide
-                    ${activeIndex === idx
+                    ${(activeSection === options.name)
                       ? "bg-white/20 text-customOrange"
                       : "text-white"
                     }

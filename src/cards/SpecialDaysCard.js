@@ -70,6 +70,7 @@ const SpecialDaysCard = ({ dayDetails, onClose }) => {
 
                     <div className="flex-1 flex items-center justify-center">
                         <div className="text-center flex flex-col gap-3 whitespace-pre-line">
+                            <img src={dayDetails.image}/>
                             <div className="text-customGreen font-semibold text-lg">
                                 {dayDetails.desc}
                             </div>

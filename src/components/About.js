@@ -64,7 +64,7 @@ const About = () => {
                     <span className="font-semibold text-customGreen font-cursive">
                         Manoj Kumar V
                     </span>
-                    , a passionate Information Science graduate with a love for solving real-world problems using technology.
+                    , a passionate Computer Engineering graduate with a love for solving real-world problems using technology.
                 </p>
 
                 <p className="text-white text-base sm:text-lg leading-relaxed mb-4">
