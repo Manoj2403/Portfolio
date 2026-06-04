@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import bus_transport from '../assets/bus_transport.png'
 import event_management from '../assets/event_management.png'
 import image_unavailable from '../assets/image_unavailable.png'
-import {
-    EVENT_MANAGEMENT_GITHUB_URL,
-    BUS_TRANSPORT_GITHUB_URL,
-    CHARITY_DONATION_GITHUB_URL
-} from '../constants/links'
+import linkImg from '../assets/link.png'
+import linkChainImg from '../assets/link_chain.png'
+import { EVENT_MANAGEMENT_GITHUB_URL, BUS_TRANSPORT_GITHUB_URL, CHARITY_DONATION_GITHUB_URL } from '../constants/links'
+
 
 const Projects = () => {
+    const [activeCard, setActiveCard] = useState(null);
 
     const projects = [
         {
@@ -72,114 +72,136 @@ const Projects = () => {
                 What I've Built
             </h1>
 
+
             {/* Main Container */}
-            <div className="
-                    flex flex-col
-                    lg:flex-row
-                    lg:justify-around
-                    items-center
-                    gap-8
-                    lg:gap-0
-                    w-full
-                    animate-fade-top">
-
-                {/* Left Pulse Effect  */}
+            <div className="flex items-center justify-center w-full overflow-x-auto py-10">
                 <div className="hidden lg:block w-0.5 h-72 bg-customGreen my-auto relative rounded-sm">
                     <div className="absolute inset-0 blur-sm bg-customGreen animate-pulse" />
                 </div>
+                <div
+                    className="relative h-[550px] mx-auto"
+                    style={{
+                        width: `${320 + (projects.length - 1) * 170}px`
+                    }}
+                >
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            onMouseEnter={() => setActiveCard(index)}
+                            onMouseLeave={() => setActiveCard(null)}
+                            className={`
+                    absolute
+                    top-0
+                    w-[320px]
+                    h-[500px]
+                    rounded-2xl
+                    cursor-pointer
+                    flex
+                    flex-col
+                    border
+                    backdrop-blur-md
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    ${activeCard === index
+                                    ? "bg-white/15 border-customOrange/50 scale-[1.02] shadow-[0_25px_80px_rgba(255,255,255,0.15)]"
+                                    : "bg-white/10 border-white/10"
+                                }`}
+                            style={{
+                                left: (() => {
+                                    const normalPosition = index * 180;
 
-                {/* Project Cards */}
-                {projects.map((project, index) => (
-                    <div key={index} className=" 
-                            bg-white/10
-                            backdrop-blur-md
-                            border
-                            cursor-pointer
-                            rounded-2xl
-                            p-4 sm:p-8
-                            w-[320px] sm:w-[360px] lg:w-80
-                            h-[500px]
-                            flex-shrink-0
-                            text-left
-                            hover:scale-[1.02]
-                            transition-transform
-                            duration-300
-                            ease-in-out
-                            animate-fade-top
-                            flex flex-col
-                            hover:border-customOrange/50"
-                        onClick={() => {
-                            project.link
-                                ? window.open(project.link, "_blank")
-                                : window.alert("No URL Found for " + project.name + ".");
-                        }}>
+                                    if (activeCard === null) {
+                                        return `${normalPosition}px`;
+                                    }
 
-                        {/* Image */}
-                        <div className="-mx-8 -mt-8 rounded-t-2xl overflow-hidden"> 
-                            <img src={project.image} alt={project.name + ' screenshot'} 
-                            className="w-full h-44 object-cover block" /> 
-                        </div>
+                                    if (index < activeCard) {
+                                        return `${normalPosition - 80}px`;
+                                    }
 
-                        {/* Content */}
-                        <div className="pt-3 flex flex-col flex-1">
+                                    if (index > activeCard) {
+                                        return `${normalPosition + 80}px`;
+                                    }
 
-                            {/* Title + Date */}
-                            <div className="flex justify-between items-start gap-2">
-                                <h1 className="text-sm text-white font-semibold break-words">
-                                    {project.name}
-                                </h1>
+                                    return `${normalPosition}px`;
+                                })(),
 
-                                <p className="text-xs sm:text-sm text-gray-300 whitespace-nowrap font-cursive">
-                                    {project.projectDate}
+                                zIndex:
+                                    activeCard === index
+                                        ? 100
+                                        : projects.length - index
+                            }}
+                            onClick={() => {
+                                project.link
+                                    ? window.open(project.link, "_blank")
+                                    : window.alert(
+                                        "No URL Found for " + project.name + "."
+                                    );
+                            }}
+                        >
+                            <div className="rounded-t-2xl overflow-hidden">
+                                <img
+                                    src={project.image}
+                                    alt={`${project.name} screenshot`}
+                                    className="w-full h-44 object-cover block"
+                                />
+                            </div>
+
+                            <div className="p-4 flex flex-col flex-1">
+                                <div className="flex justify-between items-start gap-2">
+                                    <h1 className="text-sm text-white font-semibold break-words flex items-center gap-1">
+                                        {project.name}
+                                    </h1>
+
+                                    <p className="text-xs sm:text-sm text-gray-300 whitespace-nowrap font-cursive">
+                                        {project.projectDate}
+                                    </p>
+                                </div>
+
+                                <p className="text-sm text-customOrange mt-2 font-cursive">
+                                    {project.applicationType}
                                 </p>
-                            </div>
 
-                            {/* App Type */}
-                            <p className="text-sm text-customOrange mt-2 font-cursive">
-                                {project.applicationType}
-                            </p>
+                                <p className="text-sm text-gray-300 mt-3">
+                                    {project.description || "Short summary..."}
+                                </p>
 
-                            {/* Description */}
-                            <p className="text-sm text-gray-300 mt-3">
-                                {project.description || "Short summary..."}
-                            </p>
-
-                            {/* Tech Stack */}
-                            <div className="flex flex-wrap gap-2 mt-auto pt-4">
-                                {project.techStack.map((skill, index) => (
-                                    <div
-                                        key={index}
-                                        className="
-                                            rounded-xl
-                                            px-2 py-1
-                                            border
-                                            font-cursive
-                                            border-customGreen/50
-                                            font-medium
-                                            text-sm
-                                            text-customGreen
-                                            hover:scale-110
-                                            transition-transform
-                                            duration-300
-                                            ease-in-out
-                                            hover:text-customPink
-                                            hover:border-customPink/50">
-                                        {skill}
-                                    </div>
-                                ))}
+                                <div className="flex flex-wrap gap-2 mt-auto pt-4">
+                                    {project.techStack.map((skill, skillIndex) => (
+                                        <div
+                                            key={skillIndex}
+                                            className="
+                                    rounded-xl
+                                    px-2
+                                    py-1
+                                    border
+                                    font-cursive
+                                    border-customGreen/50
+                                    font-medium
+                                    text-sm
+                                    text-customGreen
+                                    transition-all
+                                    duration-300
+                                    hover:scale-105
+                                    hover:text-customPink
+                                    hover:border-customPink/50
+                                "
+                                        >
+                                            {skill}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-
-                {/* Right Pulse Effect */}
+                    ))}
+                </div>
                 <div className="hidden lg:block w-0.5 h-72 bg-customGreen my-auto relative rounded-sm">
                     <div className="absolute inset-0 blur-sm bg-customGreen animate-pulse" />
                 </div>
-
             </div>
-        </div>
+
+        </div >
     );
 };
 
-export default Projects;
+export default Projects; 
