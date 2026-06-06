@@ -8,7 +8,7 @@ import { EVENT_MANAGEMENT_GITHUB_URL, BUS_TRANSPORT_GITHUB_URL, CHARITY_DONATION
 
 
 const Projects = () => {
-    const [activeCard, setActiveCard] = useState(null);
+    const [activeCard, setActiveCard] = useState(0);
 
     const projects = [
         {
@@ -151,59 +151,90 @@ const Projects = () => {
 
                 <div className="hidden lg:flex items-center justify-center w-full overflow-x-auto">
 
-
                     <div
-                        className="relative h-[550px] mx-8"
+                        className="relative h-[550px]"
                         style={{
-                            width: `${320 + (projects.length - 1) * 180}px`
+                            width: "1100px"
                         }}
+                        onMouseLeave={() => setActiveCard(-1)}
                     >
                         {projects.map((project, index) => (
                             <div
                                 key={index}
                                 onMouseEnter={() => setActiveCard(index)}
-                                onMouseLeave={() => setActiveCard(null)}
                                 className={`
-                        absolute
-                        top-0
-                        w-[320px]
-                        h-[500px]
-                        rounded-2xl
-                        cursor-pointer
-                        flex
-                        flex-col
-                        border
-                        backdrop-blur-md
-                        transition-all
-                        duration-700
-                        ease-[cubic-bezier(0.22,1,0.36,1)]
-                        ${activeCard === index
-                                        ? "bg-white/15 border-customOrange/50 shadow-[0_25px_80px_rgba(255,255,255,0.15)]"
-                                        : "bg-white/10 border-white/10"
+                    absolute
+                    top-0
+                    w-[320px]
+                    h-[500px]
+                    rounded-2xl
+                    cursor-pointer
+                    flex
+                    flex-col
+                    border
+                    backdrop-blur-md
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    transform-gpu
+
+                    ${activeCard === index
+                                        ? `
+                            bg-white/15
+                            border-customOrange/50
+                            shadow-[0_25px_80px_rgba(255,255,255,0.15)]
+                            scale-[1.01]
+                          `
+                                        : `
+                            bg-white/10
+                            border-white/10
+                            scale-100
+                          `
                                     }
-                    `}
+                `}
                                 style={{
                                     left: (() => {
-                                        const normalPosition = index * 180;
+                                        const cardWidth = 200;
+                                        const stackOffset = 150;
+                                        const collapsedOffset = 110;
+                                        const futureOffset = 90;
 
+                                        const totalDeckWidth =
+                                            cardWidth + ((projects.length - 1) * stackOffset);
+
+                                        const deckStart =
+                                            (1100 - totalDeckWidth) / 2;
+
+                                        // Initial state
                                         if (activeCard === null) {
-                                            return `${normalPosition}px`;
+                                            return `${deckStart + (index * stackOffset)}px`;
                                         }
 
+                                        // Previous cards move only slightly left
                                         if (index < activeCard) {
-                                            return `${normalPosition - 80}px`;
+                                            return `${deckStart + (index * collapsedOffset)}px`;
                                         }
 
-                                        if (index > activeCard) {
-                                            return `${normalPosition + 80}px`;
+                                        // Active card stays close to its original location
+                                        if (index === activeCard) {
+                                            return `${deckStart + (activeCard * stackOffset)}px`;
                                         }
 
-                                        return `${normalPosition}px`;
+                                        // Future cards stay stacked after active card
+                                        return `${deckStart +
+                                            (activeCard * stackOffset) +
+                                            cardWidth +
+                                            ((index - activeCard - 1) * futureOffset)
+                                            }px`;
+
                                     })(),
+
                                     zIndex:
                                         activeCard === index
                                             ? 100
-                                            : projects.length - index
+                                            : index < activeCard
+                                                ? index + 1
+                                                : projects.length - index
                                 }}
                                 onClick={() => {
                                     project.link
@@ -237,7 +268,7 @@ const Projects = () => {
                                     </p>
 
                                     <p className="text-sm text-gray-300 mt-3">
-                                        {project.description || "Short summary..."}
+                                        {project.description}
                                     </p>
 
                                     <div className="flex flex-wrap gap-2 mt-auto pt-4">
@@ -245,21 +276,21 @@ const Projects = () => {
                                             <div
                                                 key={skillIndex}
                                                 className="
-                                        rounded-xl
-                                        px-2
-                                        py-1
-                                        border
-                                        font-cursive
-                                        border-customGreen/50
-                                        font-medium
-                                        text-sm
-                                        text-customGreen
-                                        transition-all
-                                        duration-300
-                                        hover:scale-105
-                                        hover:text-customPink
-                                        hover:border-customPink/50
-                                    "
+                                    rounded-xl
+                                    px-2
+                                    py-1
+                                    border
+                                    font-cursive
+                                    border-customGreen/50
+                                    font-medium
+                                    text-sm
+                                    text-customGreen
+                                    transition-all
+                                    duration-300
+                                    hover:scale-105
+                                    hover:text-customPink
+                                    hover:border-customPink/50
+                                "
                                             >
                                                 {skill}
                                             </div>
@@ -269,7 +300,6 @@ const Projects = () => {
                             </div>
                         ))}
                     </div>
-
 
                 </div>
                 <div className="w-0.5 h-72 bg-customGreen my-auto relative rounded-sm flex-shrink-0">
