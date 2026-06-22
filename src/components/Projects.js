@@ -290,7 +290,7 @@ const Projects = () => {
                                     hover:scale-105
                                     hover:text-customPink
                                     hover:border-customPink/50
-                                "
+                                "       
                                             >
                                                 {skill}
                                             </div>

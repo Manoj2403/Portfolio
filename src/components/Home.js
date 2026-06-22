@@ -6,7 +6,7 @@ import { Typewriter } from 'react-simple-typewriter';
 import { LINKEDIN_LINK, HACKERRANK_LINK, GITHUB_LINK, LEETCODE_LINK } from '../constants/links'
 
 const Home = () => {
-    const domain = ["Software Engineer", "Tech Enthusiast"];
+    const domain = ["Junior Software Engineer", "Tech Enthusiast"];
     // const [visibleJob, setVisibleJob] = useState("");
 
     // useEffect(() => {
