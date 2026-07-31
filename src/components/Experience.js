@@ -2,18 +2,31 @@ import React, { useEffect } from 'react'
 import cognizantLogo from '../assets/Cognizant_Logo.png'
 import cognizantLogoSymbol from '../assets/cognizant_logo_symbol.jpeg'
 import gfgLogo from '../assets/gfg_logo.png'
+import tcsLogo from '../assets/tcs_logo_1.png'
 
 const Experience = () => {
   const experience = [
     {
-      designation: "Software Engineer",
-      company: "Cognizant",
-      startYear: 2025,
-      startMonth: "March",
+      designation: "System Engineer",
+      company: "Tata Consultancy Services",
+      startYear: 2026,
+      startMonth: "July",
       endYear: null,
       endMonth: null,
       location: "Chennai, India",
       isCurrentlyWorking: true,
+      image: tcsLogo,
+      description: "Working as a Software Engineer, contributing to enterprise-level applications and collaborating with cross-functional teams to deliver high-quality solutions.",
+    },
+    {
+      designation: "Software Engineer Trainee",
+      company: "Cognizant",
+      startYear: 2025,
+      startMonth: "March",
+      endYear: 2026,
+      endMonth: "July",
+      location: "Chennai, India",
+      isCurrentlyWorking: false,
       image: cognizantLogoSymbol,
       description: "Working as a Software Engineer, contributing to enterprise-level applications and collaborating with cross-functional teams to deliver high-quality solutions.",
     },
@@ -87,7 +100,7 @@ const Experience = () => {
                   <img
                     src={exp.image}
                     alt={exp.company}
-                    className="w-8 h-8 object-contain rounded"
+                    className="w-10 h-10 object-contain rounded"
                   />
                   <p className="font-bold text-gray-100 text-base">{exp.company}</p>
                 </div>
