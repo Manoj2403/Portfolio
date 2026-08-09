@@ -27,6 +27,16 @@ module.exports = {
       },
 
       keyframes: {
+        zoomIn: {
+          "0%": {
+            transform: "scale(0.8)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: "1",
+          },
+        },
         fadeIn: {
           '0%': { transform: 'translateY(50px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import profile from '../assets/profile1.jpg';
+import profile from '../assets/Profile6.png';
+// import profile from '../assets/profile1.jpg';
 import { FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiHackerrank, SiLeetcode } from 'react-icons/si';
 import { Typewriter } from 'react-simple-typewriter';
@@ -7,6 +8,7 @@ import { LINKEDIN_LINK, HACKERRANK_LINK, GITHUB_LINK, LEETCODE_LINK } from '../c
 
 const Home = () => {
     const domain = ["Junior Software Engineer", "Tech Enthusiast"];
+    const [showPreview, setShowPreview] = useState(false);
     // const [visibleJob, setVisibleJob] = useState("");
 
     // useEffect(() => {
@@ -61,9 +63,11 @@ const Home = () => {
                 <img
                     src={profile}
                     alt="Manoj"
+                    // onClick={() => setShowPreview(true)}
                     className="sm:w-60 md:w-96 border-x-2 border-y-4
                             border-customTeal/80  hover:brightness-100 rounded-full cursor-pointer
                             shadow-[0_0_30px_rgba(20,184,166,0.2)]
+                            opacity-90
                             animate-fade-in
                             hover:shadow-[0_0_45px_rgba(20,184,166,0.3)]    
                             transition-[border-radius,filter]
@@ -85,6 +89,33 @@ const Home = () => {
                     </a>
                 </div>
             </div>
+
+
+            {/* Profile Image Preview */}
+            {showPreview && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center
+                   bg-black/80 backdrop-blur-sm p-4"
+                    onClick={() => setShowPreview(false)}
+                >
+                    <img
+                        src={profile}
+                        alt="Manoj Preview"
+                        className="max-h-[90vh] max-w-[90vw] object-contain
+               rounded-lg shadow-2xl
+               animate-[zoomIn_0.3s_ease-out]"
+                        onClick={(e) => e.stopPropagation()}
+                    />
+
+                    <button
+                        onClick={() => setShowPreview(false)}
+                        className="absolute top-5 right-5 text-white text-4xl
+                       hover:text-customTeal transition"
+                    >
+                        &times;
+                    </button>
+                </div>
+            )}
 
             <div className="hidden lg:block w-1 h-72 bg-customGreen my-auto relative">
                 <div className="absolute inset-0 blur-sm bg-customGreen animate-pulse" />

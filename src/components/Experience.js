@@ -16,7 +16,7 @@ const Experience = () => {
       location: "Chennai, India",
       isCurrentlyWorking: true,
       image: tcsLogo,
-      description: "Working as a Software Engineer, contributing to enterprise-level applications and collaborating with cross-functional teams to deliver high-quality solutions.",
+      description: "",
     },
     {
       designation: "Software Engineer Trainee",
@@ -70,9 +70,9 @@ const Experience = () => {
     const years = Math.floor(totalMonths / 12);
     const months = totalMonths % 12;
 
-    if (years === 0) return `${months}m`;
+    if (years === 0) return `${months} mo`;
     if (months === 0) return `${years} yr`;
-    return `${years} yr ${months}m`;
+    return `${years} yr ${months} mo`;
   }
 
   return (
@@ -102,7 +102,7 @@ const Experience = () => {
                     alt={exp.company}
                     className="w-10 h-10 object-contain rounded"
                   />
-                  <p className="font-bold text-gray-100 text-base">{exp.company}</p>
+                  <p className='text-white/80 font-semibold'>{exp.company}</p>
                 </div>
                 <p className="text-sm text-gray-400">
                   {exp.startMonth} {exp.startYear} -{" "}
