@@ -6,18 +6,18 @@ import tcsLogo from '../assets/tcs_logo_1.png'
 
 const Experience = () => {
   const experience = [
-    {
-      designation: "System Engineer",
-      company: "Tata Consultancy Services",
-      startYear: 2026,
-      startMonth: "July",
-      endYear: null,
-      endMonth: null,
-      location: "Chennai, India",
-      isCurrentlyWorking: true,
-      image: tcsLogo,
-      description: "",
-    },
+    // {
+    //   designation: "System Engineer",
+    //   company: "Tata Consultancy Services",
+    //   startYear: 2026,
+    //   startMonth: "July",
+    //   endYear: null,
+    //   endMonth: null,
+    //   location: "Chennai, India",
+    //   isCurrentlyWorking: true,
+    //   image: tcsLogo,
+    //   description: "",
+    // },
     {
       designation: "Software Engineer Trainee",
       company: "Cognizant",
