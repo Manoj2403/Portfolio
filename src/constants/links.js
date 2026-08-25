@@ -15,7 +15,8 @@ export const CHARITY_DONATION_GITHUB_URL = "https://github.com/Manoj2403/charity
 export const EVENT_MANAGEMENT_GITHUB_URL = "https://github.com/Manoj2403/event-management";
 
 //External - API
-export const LEETCODE_API_EXTERNAL =   "https://leetcode-api-faisalshohag.vercel.app/Manoj_Kumar_V";
+export const LEETCODE_API_EXTERNAL = "https://leetcode-api-pied.vercel.app/user/Manoj_Kumar_V";
+// export const LEETCODE_API_EXTERNAL =   "https://leetcode-api-faisalshohag.vercel.app/Manoj_Kumar_V";
 // export const LEETCODE_API_EXTERNAL = "https://leetcode-stats-api.herokuapp.com/Manoj_Kumar_V";
 
 // export const GEEKS_API_EXTERNAL = "https://gfg-stats-api.onrender.com/manojkumarse21";

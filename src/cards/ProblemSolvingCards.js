@@ -10,7 +10,7 @@ const ProblemSolvingCards = () => {
     useEffect(() => {
         const fetchLeetcode = async () => {
             try {
-                const res = await fetch(LEETCODE_API_EXTERNAL);//Already Backend code written an Deployed in Heroku . We just get the stats by giving thr Manoj_Kumar_V
+                const res = await fetch(LEETCODE_API_EXTERNAL);//Already Backend code written an Deployed in Heroku . We just get the stats by giving the Manoj_Kumar_V
 
                 if (!res.ok) { //checking the Status like 404,500,200 etc..
                     throw new Error(`Http error! Status : ${res.status}`)
@@ -21,10 +21,10 @@ const ProblemSolvingCards = () => {
                     throw new Error("Leetcode fetch Failed.")
                 }
                 console.log("Data from External API ");
-                console.log(data);
+                console.log(data?.submitStats?.acSubmissionNum[0]?.count);
                 setLeetcodeStats(
                     {
-                        solved: data.totalSolved,
+                        solved: data?.submitStats?.acSubmissionNum[0]?.count,
                         easySolved: data.easySolved,
                         mediumSolved: data.mediumSolved,
                         hardSolved: data.hardSolved,
