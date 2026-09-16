@@ -6,18 +6,18 @@ import tcsLogo from '../assets/tcs_logo_1.png'
 
 const Experience = () => {
   const experience = [
-    // {
-    //   designation: "System Engineer",
-    //   company: "Tata Consultancy Services",
-    //   startYear: 2026,
-    //   startMonth: "July",
-    //   endYear: null,
-    //   endMonth: null,
-    //   location: "Chennai, India",
-    //   isCurrentlyWorking: true,
-    //   image: tcsLogo,
-    //   description: "",
-    // },
+    {
+      designation: "Systems Engineer",
+      company: "Tata Consultancy Services",
+      startYear: 2026,
+      startMonth: "July",
+      endYear: null,
+      endMonth: null,
+      location: "Chennai, India",
+      isCurrentlyWorking: true,
+      image: tcsLogo,
+      description: "Working as a System Engineer, contributing to the development of scalable software applications, with a focus on backend development, API integration, and delivering reliable solutions in collaboration with cross-functional teams.",
+    },
     {
       designation: "Software Engineer Trainee",
       company: "Cognizant",
@@ -100,9 +100,9 @@ const Experience = () => {
                   <img
                     src={exp.image}
                     alt={exp.company}
-                    className="w-10 h-10 object-contain rounded"
+                    className="w-10 h-10 object-contain rounded "
                   />
-                  <p className='text-white/80 font-semibold'>{exp.company}</p>
+                  <p className='text-white/80 font-semibold whitespace-nowrap'>{exp.company}</p>
                 </div>
                 <p className="text-sm text-gray-400">
                   {exp.startMonth} {exp.startYear} -{" "}
