@@ -95,14 +95,14 @@ const Experience = () => {
             <div key={idx} className="flex items-start mb-16 relative">
 
               {/* LEFT Side */}
-              <div className="w-64 pr-8 text-right flex-shrink-0">
+              <div className="w-72 pr-8 text-right flex-shrink-0">
                 <div className="flex items-center justify-end gap-3 mb-1">
                   <img
                     src={exp.image}
                     alt={exp.company}
                     className="w-10 h-10 object-contain rounded "
                   />
-                  <p className='text-white/80 font-semibold whitespace-nowrap'>{exp.company}</p>
+                  <p className='text-white/80 font-semibold '>{exp.company}</p>
                 </div>
                 <p className="text-sm text-gray-400">
                   {exp.startMonth} {exp.startYear} -{" "}
